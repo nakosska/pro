@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $priority = $_POST['priority'] ?? 'medium';
     $description = $_POST['description'] ?? '';
     
-    // Находим название проекта
+ 
     $project_name = '';
     foreach ($projects as $p) {
         if ($p['id'] == $project_id) {
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
     
-    // Находим имя исполнителя
+
     $assignee_name = '';
     foreach ($storage['employees'] as $e) {
         if ($e['id'] == $assignee_id) {
@@ -65,7 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         $storage['tasks'][] = $new_task;
         
-        // Обновляем счетчик задач в проекте
         foreach ($storage['projects'] as &$p) {
             if ($p['id'] == $project_id) {
                 $p['tasks_total'] = ($p['tasks_total'] ?? 0) + 1;
